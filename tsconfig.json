@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@config/*": ["config/*"],
+      "@core/*": ["src/core/*"],
+      "@model/*": ["src/model/*"],
+      "@util/*": ["src/util/*"],
+      "@business/*": ["src/business/*"]
+    },
+    "moduleResolution": "node",
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
