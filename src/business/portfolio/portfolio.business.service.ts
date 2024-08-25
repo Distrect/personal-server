@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { UpdatePortfolioDTO } from '@business/portfolio/portfolio.business.dto';
 import SkillDAO from '@model/skill/skill.dao';
 import EducationDAO from '@model/education/education.dao';
@@ -8,6 +8,8 @@ import SocialDAO from '@model/social/social.dao';
 
 @Injectable()
 export default class PortfolioBusinessService {
+  private readonly logger = new Logger();
+
   constructor(
     private portfolioDAO: PortfolioDAO,
     private experienceDAO: ExperienceDAO,
@@ -103,97 +105,13 @@ export default class PortfolioBusinessService {
 
       return await this.portfolioDAO.getUserPortfolio(userID);
     } catch (error) {
-      console.log(`[Error]: `, error);
+      this.logger.error(
+        'Update Portfolio Error',
+        error,
+        'Portfolio Business Service',
+      );
+      console.error(`[Error]: `, error);
       throw error;
     }
   }
 }
-
-/*
-  public async updatePortfolio({
-    userID,
-    portfolioID,
-    educationData,
-    experienceData,
-    portfolioData,
-    skillData,
-  }: UpdatePortfolioDTO) {
-    try {
-      const experienceChange = this.sperateChanges(
-        experienceData,
-        'experienceID',
-        this.experienceDAO.updateEducation,
-        this.experienceDAO.createEducation,
-      );
-      const educationChange = this.sperateChanges(
-        educationData,
-        'educationID',
-        this.educationDAO.updateEducation,
-        this.educationDAO.createEducation,
-      );
-
-      const skillChange = this.sperateChanges(
-        skillData,
-        'skillID',
-        this.skillDAO.updateSkill,
-        this.skillDAO.updateSkill,
-      );
-
-      await Promise.all([
-        ...experienceChange,
-        ...educationChange,
-        ...skillChange,
-        ...(portfolioData
-          ? [
-              this.portfolioDAO.updatePortfolio({
-                portfolioID,
-                ...portfolioData,
-              }),
-            ]
-          : []),
-      ]);
-
-      return await this.portfolioDAO.getUserPortfolio(userID);
-    } catch (error) {
-      console.log('[Error] error');
-      throw error;
-    }
-  }
-*/
-
-// const skillChanges = await this.sperateChanges(skillData, 'skillID').then(
-//   (res) =>
-//     !res
-//       ? []
-//       : [
-//           this.skillDAO.createSkill(res.create),
-//           this.skillDAO.updateSkill(res.update),
-//           this.skillDAO.deleteSkill(res.deleted),
-//         ],
-// );
-
-// const experienceChanges = await this.sperateChanges(
-//   experienceData,
-//   'experienceID',
-// ).then((res) =>
-//   !res
-//     ? []
-//     : [
-//         this.experienceDAO.createExperience(res.create),
-//         this.experienceDAO.updateExperience(res.update),
-//         this.experienceDAO.deleteExperience(res.deleted),
-//       ],
-// );
-
-// const educationChanges = await this.sperateChanges(
-//   educationData,
-//   'educationID',
-// ).then((res) =>
-//   !res
-//     ? []
-//     : [
-//         this.educationDAO.createEducation(res.create),
-//         this.educationDAO.updateEducation(res.update),
-//         this.educationDAO.deleteEducation(res.deleted),
-//       ],
-// );

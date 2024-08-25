@@ -22,7 +22,9 @@ export interface IUpdateUserData {
   email?: string;
   password?: string;
   address?: IUserAddress;
+  phoneNumber?: string;
   title?: string;
+  profileImage?: string;
 }
 
 export type WhereUser = FindOptionsWhere<UserEntity>;

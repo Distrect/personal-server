@@ -1,3 +1,4 @@
+import SocialEntity from '@model/social/social.entity';
 import UserEntity from '@model/user/user.entity';
 import {
   ICreateUser,
@@ -33,6 +34,19 @@ export default class UserDAO {
 
     if (user === null) throw new NotFoundError('User not  found');
 
+    // const query = await this.userRepo
+    //   .createQueryBuilder('user')
+    //   .leftJoinAndMapMany(
+    //     'user.sox',
+    //     SocialEntity,
+    //     'social',
+    //     'user.portfolioPortfolioID = social.portfolioPortfolioID',
+    //   )
+    //   .getOne()
+    //   .catch((err) => console.error('Query Error', err));
+
+    // console.log(query);
+
     return user;
   }
 
@@ -58,6 +72,8 @@ export default class UserDAO {
   public async updateUser(userID: number, updatedData: IUpdateUserData) {
     const user = await this.getUser({ userID });
 
-    return await this.userRepo.save(Object.assign(user, updatedData));
+    return (await this.userRepo.save(
+      Object.assign(user, updatedData),
+    )) as UserEntity;
   }
 }

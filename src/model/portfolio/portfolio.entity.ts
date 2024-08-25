@@ -16,11 +16,11 @@ export default class PortfolioEntity {
   @PrimaryGeneratedColumn()
   portfolioID: number;
 
-  @Column('text')
-  background: string;
+  @Column('text', { nullable: true })
+  background: string | null;
 
-  @Column('text')
-  cover: string;
+  @Column('text', { nullable: true })
+  cover: string | null;
 
   @OneToOne(() => UserEntity, (userEntity) => userEntity.portfolio)
   user: UserEntity;
@@ -41,5 +41,5 @@ export default class PortfolioEntity {
   skills: SkillEntity[];
 
   @OneToMany(() => SocialEntity, (socialEntity) => socialEntity.portfolio)
-  socials: SkillEntity[];
+  socials: SocialEntity[];
 }

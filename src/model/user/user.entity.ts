@@ -4,8 +4,8 @@ import {
   Column,
   Index,
   BeforeInsert,
-  OneToMany,
   OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { IUserAddress } from './user.entity.interface';
 import { ChangeDate } from '@model/index';
@@ -42,7 +42,14 @@ export default class UserEntity extends ChangeDate {
   @Column('varchar', { nullable: true })
   title: string | null;
 
+  @Column('varchar', { nullable: true })
+  phoneNumber: string | null;
+
+  @Column('varchar', { nullable: true })
+  profileImage: string | null;
+
   @OneToOne(() => PortfolioEntity, (portfolioEntity) => portfolioEntity.user)
+  @JoinColumn()
   portfolio: SkillEntity[];
 
   @BeforeInsert()

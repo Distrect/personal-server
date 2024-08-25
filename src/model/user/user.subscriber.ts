@@ -1,5 +1,6 @@
 import PortfolioEntity from '@model/portfolio/portfolio.entity';
 import UserEntity from '@model/user/user.entity';
+import { Logger } from '@nestjs/common';
 import {
   EventSubscriber,
   EntitySubscriberInterface,
@@ -8,6 +9,7 @@ import {
 
 @EventSubscriber()
 export class UserListener implements EntitySubscriberInterface<UserEntity> {
+  private readonly logger = new Logger();
   constructor() {}
 
   public listenTo() {
@@ -19,12 +21,13 @@ export class UserListener implements EntitySubscriberInterface<UserEntity> {
 
     try {
       const portfolioRepo = manager.getRepository(PortfolioEntity);
-
-      await portfolioRepo.save({
-        user: entity,
-      });
+      const portfolioInstance = portfolioRepo.create({ user: entity });
+      await portfolioRepo.save(portfolioInstance);
     } catch (error) {
-      console.log(error);
+      this.logger.error(
+        error?.message && 'User Subscriber Error',
+        error?.stack,
+      );
       throw error;
     }
   }

@@ -1,5 +1,5 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
-import { AppError } from '@util/error';
+import { Injectable, Logger } from '@nestjs/common';
+import { BadRequestError, ValueValidationError } from '@util/error';
 import AuthService from '@core/auth/auth.service';
 import UserDAO from '@model/user/user.dao';
 import {
@@ -7,39 +7,58 @@ import {
   RegisterUserDTO,
   UpdateUserDTO,
 } from '@business/user/user.dto';
+import FileService from '@model/file/file.service';
+import { IUpdateUserData } from '@model/user/user.entity.interface';
+import { IAuthCookie } from '@util/util.interface';
 
 @Injectable()
 export default class UserBusinessService {
+  private logger = new Logger();
   constructor(
     private userDao: UserDAO,
     private authService: AuthService,
+    private fileService: FileService,
   ) {}
 
   public async register(userData: RegisterUserDTO) {
-    const { email, password } = userData;
+    try {
+      const { email, password } = userData;
 
-    const isUserExist = await this.userDao.chekIfUserExist({ email, password });
+      const isUserExist = await this.userDao.chekIfUserExist({
+        email,
+      });
 
-    if (isUserExist)
-      throw new AppError(
-        'Account already exist with given email',
-        HttpStatus.CONFLICT,
+      console.log(isUserExist);
+
+      if (isUserExist) throw new BadRequestError('Account already exist');
+
+      userData.password = this.authService.encryptValue(userData.password);
+
+      return await this.userDao.createUser(userData);
+    } catch (error) {
+      this.logger.error(
+        'Register user error',
+        error?.stack,
+        'Business Service',
       );
-
-    userData.password = this.authService.encryptValue(userData.password);
-
-    return await this.userDao.createUser(userData);
+      console.error(error);
+      throw error;
+    }
   }
 
-  public async login({ email, password }: LoginUserDTO) {
-    const user = await this.userDao.getUser({ email });
+  public async login({ email: userEmail, password }: LoginUserDTO) {
+    const user = await this.userDao.getUser({ email: userEmail });
 
     if (
       this.authService.compareEncryptedValue(password, user.password) === false
     )
-      throw new AppError('Passwrod is incorrect', HttpStatus.BAD_REQUEST);
+      throw new ValueValidationError(undefined, {
+        password: 'Password is incorrect',
+      });
 
-    return user;
+    const { userID, name, lastname, email } = user;
+
+    return { userID, name, lastname, email };
   }
 
   public async getUserData(userID: number) {
@@ -48,6 +67,17 @@ export default class UserBusinessService {
 
   public async updateUserInfo(userID: number, updatedData: UpdateUserDTO) {
     return await this.userDao.updateUser(userID, updatedData);
+  }
+
+  public async uploadProfileImage(
+    userData: IAuthCookie,
+    profileImage: Express.Multer.File,
+  ) {
+    const profileImagePath = this.fileService.uploadFile(profileImage, 'IMAGE');
+
+    await this.userDao.updateUser(userData.userID, {
+      profileImage: profileImagePath,
+    });
   }
 
   public async logout() {}

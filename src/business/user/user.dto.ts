@@ -5,14 +5,14 @@ import {
 import {
   IsDate,
   IsEmail,
+  IsJSON,
   IsNotEmpty,
-  IsNumber,
-  IsObject,
+  IsOptional,
   IsStrongPassword,
 } from 'class-validator';
 
 export class RegisterUserDTO {
-  @IsNotEmpty({ message: 'Name cannot be empty' })
+  @IsNotEmpty({ message: 'Name cannot be empty', context: 'deneme' })
   name: string;
 
   @IsNotEmpty({ message: 'Lastname cannot be empty' })
@@ -47,18 +47,21 @@ export class LoginUserDTO {
 }
 
 export class UpdateUserDTO implements IUpdateUserData {
-  @IsNotEmpty({ message: 'Name cannot be empty' })
+  @IsOptional()
   name?: string;
 
-  @IsNotEmpty({ message: 'Lastname cannot be empty' })
+  @IsOptional()
   lastname?: string;
 
+  @IsOptional()
   @IsDate({ message: 'Birthdate value should be date' })
   birthDate?: Date;
 
+  @IsOptional()
   @IsEmail(undefined, { message: 'Email is wrong' })
   email?: string;
 
+  @IsOptional()
   @IsStrongPassword(
     { minLength: 8, minNumbers: 1, minSymbols: 1, minUppercase: 1 },
     {
@@ -68,7 +71,10 @@ export class UpdateUserDTO implements IUpdateUserData {
   )
   password?: string;
 
+  @IsOptional()
+  @IsJSON()
   address?: IUserAddress;
 
+  @IsOptional()
   title?: string;
 }

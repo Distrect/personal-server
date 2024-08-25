@@ -12,9 +12,6 @@ export default class SkillEntity {
   @Column('integer')
   profiency: number;
 
-  @ManyToOne(
-    () => PortfolioEntity,
-    (portfolioEntity) => portfolioEntity.educations,
-  )
+  @ManyToOne(() => PortfolioEntity, (portfolioEntity) => portfolioEntity.skills)
   portfolio: PortfolioEntity;
 }

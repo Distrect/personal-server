@@ -7,6 +7,7 @@
       "@util/*": ["src/util/*"],
       "@business/*": ["src/business/*"]
     },
+
     "moduleResolution": "node",
     "module": "commonjs",
     "declaration": true,
@@ -20,7 +21,7 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,

@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { IsUrl } from 'class-validator';
 import PortfolioEntity from '@model/portfolio/portfolio.entity';
 
-@Entity()
+@Entity('social')
 export default class SocialEntity {
   @PrimaryGeneratedColumn()
   socialID: number;

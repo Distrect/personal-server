@@ -11,6 +11,9 @@ export default () =>
   >;
 
 export interface AppConfig {
+  app: {
+    port: number;
+  };
   database: {
     port: number;
     usarname: string;
@@ -18,6 +21,10 @@ export interface AppConfig {
     host: string;
   };
   jwt: {
+    secret: string;
+  };
+
+  cookie: {
     secret: string;
   };
 }
