@@ -1,5 +1,24 @@
+import type { ISKillEntity } from '@model/skill/skill.interface';
 import type UserEntity from '@model/user/user.entity';
 import { FindOptionsSelect, FindOptionsWhere } from 'typeorm';
+
+export type IUserPrimaryColumn = {
+  userID: number;
+};
+
+export interface IUserEntity extends IUserPrimaryColumn {
+  name: string;
+  lastname: string;
+  fullname: string;
+  email: string;
+  password: string;
+  birthDate: Date;
+  address: IUserAddress | null;
+  title: string | null;
+  phoneNumber: string | null;
+  profileImage: string | null;
+  portfolio: ISKillEntity[];
+}
 
 export interface IUserAddress {
   country: string;
@@ -25,6 +44,11 @@ export interface IUpdateUserData {
   phoneNumber?: string;
   title?: string;
   profileImage?: string;
+}
+
+export interface IAuthUserColumns extends IUserPrimaryColumn {
+  email: string;
+  password: string;
 }
 
 export type WhereUser = FindOptionsWhere<UserEntity>;

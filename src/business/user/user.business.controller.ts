@@ -88,16 +88,14 @@ export default class UserBusinessController {
 
   @LogActivity('Profile Image Requested')
   @Get('profileImage')
-  public async getProfileImage(
-    @User() userData: IAuthCookie,
-  ): Promise<StreamableFile> {
+  public async getProfileImage(@User() userData: IAuthCookie) {
     const user = await this.userService.getUserData(userData.userID);
-    if (!user.profileImage)
-      throw new NotFoundError('User profile image is empty');
+    // if (!user.profileImage)
+    //   throw new NotFoundError('User profile image is empty');
 
-    const file = createReadStream(user.profileImage);
+    // const file = createReadStream(user.profileImage);
 
-    return new StreamableFile(file);
+    // return new StreamableFile(file);
   }
 
   @LogActivity('Profile Image Updated')

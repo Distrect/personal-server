@@ -1,6 +1,7 @@
 import SocialEntity from '@model/social/social.entity';
 import UserEntity from '@model/user/user.entity';
 import {
+  IAuthUserColumns,
   ICreateUser,
   IUpdateUserData,
   WhereUser,
@@ -28,9 +29,14 @@ export default class UserDAO {
   }
 
   public async getUser(where: WhereUser) {
-    const user = await this.userRepo.findOne({
+    const user = (await this.userRepo.findOne({
       where,
-    });
+      select: {
+        email: true,
+        password: true,
+        userID: true,
+      },
+    })) as IAuthUserColumns;
 
     if (user === null) throw new NotFoundError('User not  found');
 

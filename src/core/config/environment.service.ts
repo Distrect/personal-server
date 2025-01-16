@@ -11,11 +11,11 @@ export default class EnvironmentService {
   }
 
   public getJwtSecret() {
-    return this.configService.get<AppConfig['jwt']>('jwt').secret;
+    return this.configService.get<AppConfig['jwt']>('jwt')?.secret;
   }
 
   public getCookieSecret() {
-    return this.configService.get<AppConfig['cookie']>('cookie').secret;
+    return this.configService.get<AppConfig['cookie']>('cookie')?.secret;
   }
 
   public getAppConfig() {

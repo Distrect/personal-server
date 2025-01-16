@@ -49,14 +49,18 @@ export default class PortfolioBusinessService {
     socialData,
   }: UpdatePortfolioDTO) {
     try {
-      const reqArr = [];
+      const reqArr: any[] = [];
 
       if (skillData) {
-        const separeted = await this.sperateChanges(skillData, 'skillID');
+        const { created, update, deleted } = await this.sperateChanges(
+          skillData,
+          'skillID',
+        );
+
         reqArr.push(
-          this.skillDAO.createSkill(separeted.create),
-          this.skillDAO.updateSkill(separeted.update),
-          this.skillDAO.deleteSkill(separeted.deleted),
+          this.skillDAO.createSkill(created),
+          this.skillDAO.updateSkill(update),
+          this.skillDAO.deleteSkill(deleted),
         );
       }
 

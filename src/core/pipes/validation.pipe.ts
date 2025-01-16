@@ -39,7 +39,7 @@ export class CustomValidationPipe implements PipeTransform<any> {
   private formatErrors(errors: ValidationError[]) {
     return errors.reduce((acc, err) => {
       const { property } = err;
-      const constraints = Object.values(err.constraints);
+      const constraints = Object.values(err.constraints as any);
       acc[property] = constraints[0];
       return acc;
     }, {});

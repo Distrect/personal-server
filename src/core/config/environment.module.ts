@@ -6,7 +6,10 @@ import yamlConfiguration from '@config/load.yaml';
 @Global()
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [yamlConfiguration] }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [yamlConfiguration],
+    }),
   ],
   providers: [EnvironmentService],
   exports: [EnvironmentService],

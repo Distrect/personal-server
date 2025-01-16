@@ -56,9 +56,9 @@ export default class UserBusinessService {
         password: 'Password is incorrect',
       });
 
-    const { userID, name, lastname, email } = user;
+    const { userID, email } = user;
 
-    return { userID, name, lastname, email };
+    return { userID, email };
   }
 
   public async getUserData(userID: number) {
