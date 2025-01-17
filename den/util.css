@@ -1,0 +1,7 @@
+.fix-width {
+   width: fit-content;
+}
+
+.max-paragraph {
+   max-width: 80ch;
+}

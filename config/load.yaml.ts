@@ -19,11 +19,12 @@ export interface AppConfig {
     usarname: string;
     password: string;
     host: string;
+    type: string;
+    database: string;
   };
   jwt: {
     secret: string;
   };
-
   cookie: {
     secret: string;
   };

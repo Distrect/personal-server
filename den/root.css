@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+   --white-50: rgba(243, 243, 243, 1);
+   --white-100: rgba(237, 237, 237, 1);
+   --base-white: rgba(232, 232, 232, 1);
+   --white-300: rgba(217, 217, 217, 1);
+   --white-400: rgba(181, 181, 181, 1);
+   --white-500: rgba(152, 152, 152, 1);
+   --white-600: rgba(111, 111, 111, 0.965);
+   --white-700: rgba(91, 91, 91, 1);
+   --white-800: rgba(61, 61, 61, 1);
+   --white-900: rgba(29, 29, 29, 1);
+
+   --black-50: rgba(216, 208, 208, 1);
+   --black-100: rgba(210, 202, 202, 1);
+   --black-200: rgba(204, 197, 197, 1);
+   --black-300: rgba(112, 112, 112, 1);
+   --black-400: rgba(156, 148, 148, 1);
+   --black-500: rgba(127, 120, 120, 1);
+   --black-600: rgba(87, 81, 81, 1);
+   --black-700: rgba(69, 62, 63, 1);
+   --base-black: rgba(40, 34, 34, 1);
+   --black-900: rgba(5, 0, 0, 1);
+
+   --blue-50: rgba(255, 230, 255, 1);
+   --blue-100: rgba(255, 230, 255, 1);
+   --blue-200: rgba(185, 155, 255, 1);
+   --blue-300: rgba(147, 114, 255, 1);
+   --blue-400: rgba(116, 82, 255, 1);
+   --base-blue: rgba(84, 49, 255, 1);
+   --blue-600: rgba(65, 47, 251, 1);
+   --blue-700: rgba(43, 36, 239, 1);
+   --blue-800: rgba(0, 32, 232, 1);
+   --blue-900: rgba(0, 21, 217, 1);
+
+   --blue-a-100: rgba(179, 133, 255, 1);
+   --blue-a-200: rgba(75, 72, 255, 1);
+   --blue-a-400: rgba(0, 5, 255, 1);
+   --blue-a-700: rgba(0, 0, 255, 1);
+
+   --orange-50: rgba(252, 241, 223, 1);
+   --orange-100: rgba(253, 224, 179, 1);
+   --orange-200: rgba(252, 203, 130, 1);
+   --orange-300: rgba(250, 182, 77, 1);
+   --base-orange: rgba(249, 166, 32, 1);
+   --orange-500: rgba(251, 152, 0, 1);
+   --orange-600: rgba(247, 141, 0, 1);
+   --orange-700: rgba(242, 125, 0, 1);
+   --orange-800: rgba(235, 109, 0, 1);
+   --orange-900: rgba(227, 83, 1, 1);
+
+   --orange-a-100: rgba(251, 208, 127, 1);
+   --orange-a-200: rgba(249, 170, 63, 1);
+   --orange-a-400: rgba(251, 143, 0, 1);
+   --orange-a-700: rgba(250, 108, 0, 1);
+
+   --red-50: rgba(255, 221, 232, 1);
+   --red-100: rgba(255, 190, 203, 1);
+   --red-200: rgba(253, 137, 143, 1);
+   --red-300: rgba(242, 96, 107, 1);
+   --red-400: rgba(252, 55, 71, 1);
+   --base-red: rgba(255, 21, 44, 1);
+   --red-600: rgba(239, 0, 44, 1);
+   --red-700: rgba(220, 0, 38, 1);
+   --red-800: rgba(207, 0, 31, 1);
+   --red-900: rgba(193, 0, 17, 1);
+
+   --red-a-100: rgba(255, 121, 117, 1);
+   --red-a-200: rgba(255, 46, 74, 1);
+   --red-a-400: rgba(255, 0, 65, 1);
+   --red-a-700: rgba(223, 0, 0, 1);
+
+   --base-tomato: rgba(252, 91, 47, 1);
+
+   --green-50: rgba(215, 250, 195, 1);
+   --green-100: rgba(191, 239, 163, 1);
+   --green-200: rgba(163, 226, 129, 1);
+   --green-300: rgba(137, 215, 91, 1);
+   --green-400: rgba(116, 205, 60, 1);
+   --green-500: rgba(92, 196, 20, 1);
+   --base-green: rgba(74, 179, 5, 1);
+   --green-700: rgba(53, 159, 0, 1);
+   --green-800: rgba(24, 140, 0, 1);
+   --green-900: rgba(0, 106, 0, 1);
+
+   --green-a-100: rgba(166, 255, 106, 1);
+   --green-a-200: rgba(126, 255, 36, 1);
+   --green-a-400: rgba(0, 255, 0, 1);
+   --green-a-700: rgba(0, 222, 0, 1);
+
+   --radius: 10px;
+
+   --base-font-size: 16px;
+   --scale-ratio: 1.25;
+   --text-xxs: calc(
+      var(--base-font-size) /
+         (var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio))
+   );
+   --text-xs: calc(
+      var(--base-font-size) / (var(--scale-ratio) * var(--scale-ratio))
+   );
+   --text-sm: calc(var(--base-font-size) / var(--scale-ratio));
+   --text-sd: calc(
+      var(--base-font-size) / var(--scale-ratio)
+   ); /* Note: This will be the same as --text-sm with a scale-ratio of 1.25 */
+   --text-md: calc(var(--base-font-size) * var(--scale-ratio));
+   --text-lg: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio)
+   );
+   --text-xl: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+         var(--scale-ratio)
+   );
+   --text-xxl: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+         var(--scale-ratio) * var(--scale-ratio)
+   );
+   --text-xxxl: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+         var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio)
+   );
+   --text-4xl: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+         var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) *
+         var(--scale-ratio)
+   );
+   --text-5xl: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+         var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) *
+         var(--scale-ratio) * var(--scale-ratio)
+   );
+
+   font-family: 'Nunito', serif;
+   font-optical-sizing: auto;
+   font-style: normal;
+}
+
+.color-white-100 {
+   color: var(--white-100) !important;
+}
+
+.color-white-200 {
+   color: var(--white-200) !important;
+}
+
+.color-white-300 {
+   color: var(--white-300) !important;
+}
+.color-white-800 {
+   color: var(--white-800) !important;
+}
+
+.color-black-base {
+   color: var(--base-black) !important;
+}
+
+.color-black-600 {
+   color: var(--black-600) !important;
+}
+
+.color-black-700 {
+   color: var(--black-700) !important;
+}
+
+@media print {
+   @page {
+      /* size: A4 portrait; */
+      size: auto;
+   }
+
+   html,
+   body,
+   .page-wrapper {
+      width: 210mm;
+      height: 297mm;
+   }
+
+   :root {
+      --scale-ratio: 1.05;
+   }
+}

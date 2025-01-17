@@ -42,7 +42,7 @@ const pup = async () => {
   const page = await browser.newPage();
 
   await page.setContent(
-    readFileSync('C:/Users/myfor/Desktop/den/cv.html', 'utf-8'),
+    readFileSync('/Users/sametsaricicek/Desktop/ssamet/den/cv.html', 'utf-8'),
     { waitUntil: 'load' },
   );
 
@@ -65,11 +65,21 @@ const pup = async () => {
   console.log('Z', z);
 
   await Promise.all([
-    page.addStyleTag({ path: 'C:/Users/myfor/Desktop/den/root.css' }),
-    page.addStyleTag({ path: 'C:/Users/myfor/Desktop/den/util.css' }),
-    page.addStyleTag({ path: 'C:/Users/myfor/Desktop/den/reset.css' }),
-    page.addStyleTag({ path: 'C:/Users/myfor/Desktop/den/typography.css' }),
-    page.addStyleTag({ path: 'C:/Users/myfor/Desktop/den/style.css' }),
+    page.addStyleTag({
+      path: '/Users/sametsaricicek/Desktop/ssamet/den/root.css',
+    }),
+    page.addStyleTag({
+      path: '/Users/sametsaricicek/Desktop/ssamet/den/util.css',
+    }),
+    page.addStyleTag({
+      path: '/Users/sametsaricicek/Desktop/ssamet/den/reset.css',
+    }),
+    page.addStyleTag({
+      path: '/Users/sametsaricicek/Desktop/ssamet/den/typography.css',
+    }),
+    page.addStyleTag({
+      path: '/Users/sametsaricicek/Desktop/ssamet/den/style.css',
+    }),
   ]);
 
   const p = await page.pdf({

@@ -22,22 +22,27 @@ import LogEntity from '@model/log/log.entity';
     TypeOrmModule.forRootAsync({
       imports: [EnvironmentModule],
       inject: [EnvironmentService],
-      useFactory: (envService) => ({
-        ...envService.getDatabaseConfig(),
-        // synchronize: true,
-        // dropSchema: true,
-        compression: true,
-        entities: [
-          UserEntity,
-          PortfolioEntity,
-          SkillEntity,
-          EducationEntity,
-          ExperienceEntity,
-          SocialEntity,
-          LogEntity,
-        ],
-        subscribers: [UserListener],
-      }),
+      useFactory: (envService) => {
+        console.log('ENV Service', envService.getDatabaseConfig());
+
+        return {
+          ...envService.getDatabaseConfig(),
+          // synchronize: true,
+          // dropSchema: true,
+          type: 'mysql',
+          compression: true,
+          entities: [
+            UserEntity,
+            PortfolioEntity,
+            SkillEntity,
+            EducationEntity,
+            ExperienceEntity,
+            SocialEntity,
+            LogEntity,
+          ],
+          subscribers: [UserListener],
+        };
+      },
     }),
   ],
 })

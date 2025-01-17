@@ -1,0 +1,49 @@
+@import './root.css';
+
+.text-xxs {
+   font-size: var(--text-xxs) !important;
+}
+
+.text-xs {
+   font-size: var(--text-xs) !important;
+}
+
+.text-sm {
+   font-size: var(--text-sm) !important;
+}
+
+.text-sd {
+   font-size: var(--text-sd) !important;
+}
+
+.text-b {
+   font-size: var(--base-font-size) !important;
+}
+
+.text-md {
+   font-size: var(--text-md) !important;
+}
+
+.text-lg {
+   font-size: var(--text-lg) !important;
+}
+
+.text-xl {
+   font-size: var(--text-xl) !important;
+}
+
+.text-xxl {
+   font-size: var(--text-xxl) !important;
+}
+
+.text-xxxl {
+   font-size: var(--text-xxxl) !important;
+}
+
+.text-4xl {
+   font-size: var(--text-4xl) !important;
+}
+
+.text-5xl {
+   font-size: var(--text-5xl) !important;
+}
